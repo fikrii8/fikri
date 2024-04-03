@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil dan Peminjaman Buku</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #profile {
+        text-align: justify;
+        margin-bottom: 20px;
+    }
+    #bookForm {
+        text-align: justify;
+    }
+</style>
+</head>
+<body>
+
+<div id="profile">
+    <img src="fikri.jpg" alt="Foto Anda">
+    <h2>Muhammad Al Fikri</h2>
+    <p>6701220092</p>
+    <p>D3SI4604</p>
+</div>
+
+<div id="bookForm">
+    <label for="jumlah">JUMLAH:</label>
+    <input type="text" id="jumlah"><br><br>
+    
+    <label for="buku">BUKU:</label>
+    <select id="buku">
+        <option value="sherlock">Sherlock</option>
+        <option value="lupin">Lupin</option>
+        <option value="aladin">Aladin</option>
+    </select><br><br>
+    
+    <button onclick="pinjamBuku()">PINJAM</button>
+</div>
+
+<script>
+let buku = [
+    {"nama": "sherlock", "jumlah":2},
+    {"nama": "lupin", "jumlah":2},
+    {"nama": "aladin", "jumlah":2}
+];
+
+function pinjamBuku() {
+    let jumlah = document.getElementById("jumlah").value;
+    let selectedBuku = document.getElementById("buku").value;
+    let found = false;
+    
+    if (jumlah === "") {
+        alert("silahkan masukan jumlah buku!");
+        return;
+    }
+    
+    for (let i = 0; i < buku.length; i++) {
+        if (buku[i].nama === selectedBuku) {
+            found = true;
+            if (parseInt(jumlah) > buku[i].jumlah) {
+                alert("buku tidak tersedia!");
+            } else {
+                alert("ambil buku Anda.");
+            }
+            break;
+        }
+    }
+    
+    if (!found) {
+        alert("buku tidak ditemukan!");
+    }
+}
+</script>
+
+</body>
+</html>
